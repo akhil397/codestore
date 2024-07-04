@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Code Models List</h1>
+
+<div>
+  {% for code in code_models %}
+
+  <div style="background-color: #ccc">
+    <button type="button" style="width: 250px; margin: 2px 0px">
+      <a class="link-dark p-2" href="{% url 'about' code.id %}"
+        >{{ code.title }}</a
+      >
+    </button>
+    <button type="button">
+      <a href="{% url 'update_data' code.id %}">Up</a>
+    </button>
+    <button type="button">
+      <a href="{% url 'delete_data' code.id %}">Del</a>
+    </button>
+  </div>
+  {% empty %}
+  <li>No code models available.</li>
+  {% endfor %}
+</div>
+{% endblock content %}

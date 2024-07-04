@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <h1>Search Results</h1>
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %} {% endif %} {% if posts %}
+  <div>
+    {% for post in posts %}
+    <div style="background-color: #ccc">
+      <button type="button" style="width: 245px; margin: 2px 0px">
+        <a class="link-dark p-2" href="{% url 'about' post.id %}"
+          >{{ post.title }}</a
+        >
+      </button>
+      <button type="button">
+        <a href="{% url 'update_data' post.id %}">Up</a>
+      </button>
+      <button type="button">
+        <a href="{% url 'delete_data' post.id %}">Del</a>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No results found.</p>
+  {% endif %}
+</div>
+{% endblock %}
