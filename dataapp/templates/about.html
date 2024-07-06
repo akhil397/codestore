@@ -1,17 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container">
   <div class="row">**************</div>
-  <div class="row"><h1>{{ code_detail.title }}</h1></div>
-  <div class="row"><h2>Language : {{ code_detail.code_lang }}</h2></div>
+  <div class="row"><h1 class="text-truncate">{{ code_detail.title }}</h1></div>
+  <div class="row bg-secondary text-white">
+    <h2>Language : {{ code_detail.code_lang }}</h2>
+  </div>
   <div class="row">
     <h2>Code</h2>
     <pre><code>{{ code_detail.codes }}</code></pre>
   </div>
-  <div class="row">
+  <div class="row border border-black">
     <h2>Code Discription</h2>
     <p>{{ code_detail.description }}</p>
   </div>
-  <div class="row"><h2>{{ code_detail.types }}</h2></div>
+  <div class="row"><h2>{{ code_detail.type_code }}</h2></div>
   {% if code_detail.image %}
   <div class="row">
     <p>
