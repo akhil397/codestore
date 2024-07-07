@@ -4,9 +4,6 @@ from django.db.models import Q
 from .models import CodeModels, Language, Types
 from .forms import CodeForm
 
-# def details(request, pk):#this for listing
-#     posts = get_object_or_404(CodeModels, id=pk)
-#     return render(request, 'search.html',{'posts': posts})
 
 def about(request, pk):#this for detailing
     code_detail = get_object_or_404(CodeModels, id=pk)
@@ -15,20 +12,26 @@ def about(request, pk):#this for detailing
 def adddata(request):
     all_lang = Language.objects.all()
     types_code = Types.objects.all()
-    context = {
-        'all_langs': all_lang,
-        'type_codes': types_code,
-        'codeform': CodeForm(),
-    }
     
     if request.method == 'POST':
         codeformsave = CodeForm(request.POST, request.FILES)
         if codeformsave.is_valid():
             codeformsave.save()
-            return redirect('search_btn')  # Redirect to the 'details' view after saving
-
-    return render(request, 'add_data.html', context)
-
+            return redirect('search_btn') 
+        else:
+            context = {
+                'all_langs': all_lang,
+                'type_codes': types_code,
+                'codeform': codeformsave,
+            }
+            return render(request, 'add_data.html', context)
+    else:
+        context = {
+            'all_langs': all_lang,
+            'type_codes': types_code,
+            'codeform': CodeForm(),
+        }
+        return render(request, 'add_data.html', context)
 def update_code_model(request, pk):
     code_model = get_object_or_404(CodeModels, id=pk)
     all_lang = Language.objects.all()
