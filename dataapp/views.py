@@ -25,7 +25,7 @@ def adddata(request):
         codeformsave = CodeForm(request.POST, request.FILES)
         if codeformsave.is_valid():
             codeformsave.save()
-            return redirect('details')  # Redirect to the 'details' view after saving
+            return redirect('search_btn')  # Redirect to the 'details' view after saving
 
     return render(request, 'add_data.html', context)
 

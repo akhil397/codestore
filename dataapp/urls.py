@@ -7,5 +7,4 @@ urlpatterns = [
     path('about/<int:pk>/', views.about, name='about'),
     path('update/<int:pk>/', views.update_code_model, name='update_data'),
     path('delete/<int:pk>/', views.delete_data, name='delete_data'),
-    # path('details/<int:pk>/', views.details, name='details'),
 ]
